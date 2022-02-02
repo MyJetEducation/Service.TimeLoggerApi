@@ -65,8 +65,6 @@ namespace Service.TimeLoggerApi.Controllers
 
 		private Task TimerAction()
 		{
-			_logger.LogDebug("TaskRetryController TimerAction invoked!");
-
 			if (RequestQueue.Any())
 			{
 				_logger.LogDebug("Queue has items, processing...");
@@ -95,6 +93,6 @@ namespace Service.TimeLoggerApi.Controllers
 			return Task.CompletedTask;
 		}
 
-		private static TimeSpan GetDuration() => TimeSpan.FromSeconds(Program.ReloadedSettings(model => model.QueueCheckIntervalMilliseconds).Invoke());
+		private static TimeSpan GetDuration() => TimeSpan.FromMilliseconds(Program.ReloadedSettings(model => model.QueueCheckIntervalMilliseconds).Invoke());
 	}
 }
