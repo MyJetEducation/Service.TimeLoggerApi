@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MyJetWallet.Sdk.Service.Tools;
@@ -21,8 +20,6 @@ using Service.UserInfo.Crud.Grpc;
 
 namespace Service.TimeLoggerApi.Controllers
 {
-	[Authorize]
-	[ApiController]
 	[OpenApiTag("UserTime", Description = "User time logger")]
 	[Route("/api/v1/user-time")]
 	public class UserTimeController : BaseController
