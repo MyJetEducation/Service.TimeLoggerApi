@@ -86,14 +86,14 @@ namespace Service.TimeLoggerApi.Controllers
 		{
 			var request = _encoderDecoder.DecodeProto<TimeLogGrpcRequest>(token);
 			if (request == null)
-				return StatusResponse.Error(TimeLoggerResponseCode.TokenInvalid);
+				return StatusResponse.Error(TimeLoggerResponseCode.InvalidTimeToken);
 
 			DateTime now = _systemClock.Now;
 
 			if (!TokenLifetimeDictionary.TryGetValue(token, out DateTime lastRecieved) || now.Subtract(lastRecieved).Minutes >= _tokenExpire)
 			{
 				TokenLifetimeDictionary.Remove(token, out _);
-				return StatusResponse.Error(TimeLoggerResponseCode.TokenExpired);
+				return StatusResponse.Error(TimeLoggerResponseCode.TimeTokenExpired);
 			}
 
 			TokenLifetimeDictionary[token] = now;

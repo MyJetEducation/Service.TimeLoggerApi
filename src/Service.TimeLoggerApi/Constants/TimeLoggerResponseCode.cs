@@ -2,8 +2,8 @@
 {
 	public class TimeLoggerResponseCode
 	{
-		public const int TokenExpired = -15;
+		public const int TimeTokenExpired = -15;
 
-		public const int TokenInvalid = -16;
+		public const int InvalidTimeToken = -16;
 	}
 }
