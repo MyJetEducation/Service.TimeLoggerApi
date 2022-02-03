@@ -1,7 +1,9 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
+using Service.Core.Client.Constants;
 using Service.Core.Client.Services;
 using Service.TimeLogger.Grpc.Models;
 using Service.TimeLoggerApi.Models;
@@ -13,20 +15,34 @@ namespace Service.TimeLoggerApi.Controllers
 	[Route("/api/v1/task-time")]
 	public class TaskTimeController : BaseController
 	{
-		public TaskTimeController(IUserInfoService userInfoService, IEncoderDecoder encoderDecoder, ISystemClock systemClock) :
-			base(userInfoService, encoderDecoder, systemClock)
+		private readonly ISystemClock _systemClock;
+		private readonly IEncoderDecoder _encoderDecoder;
+
+		public TaskTimeController(IUserInfoService userInfoService, ISystemClock systemClock, IEncoderDecoder encoderDecoder) :
+			base(userInfoService)
 		{
+			_systemClock = systemClock;
+			_encoderDecoder = encoderDecoder;
 		}
 
 		[HttpPost("get")]
 		[SwaggerResponse(HttpStatusCode.OK, typeof (DataResponse<int>), Description = "Ok")]
-		public async ValueTask<IActionResult> GetTokenAsync(GetTaskTokenRequest request) => await GenerateTokenAsync((userId, nowDate) => new TaskTimeLogGrpcRequest
+		public async ValueTask<IActionResult> GetTokenAsync(GetTaskTokenRequest request)
 		{
-			UserId = userId,
-			StartDate = nowDate,
-			Tutorial = request.Tutorial,
-			Unit = request.Unit,
-			Task = request.Task
-		});
+			Guid? userId = await GetUserIdAsync();
+			if (userId == null)
+				return StatusResponse.Error(ResponseCode.UserNotFound);
+
+			string token = _encoderDecoder.EncodeProto(new TaskTimeLogGrpcRequest
+			{
+				UserId = userId.Value,
+				StartDate = _systemClock.Now,
+				Tutorial = request.Tutorial,
+				Unit = request.Unit,
+				Task = request.Task
+			});
+
+			return DataResponse<string>.Ok(token);
+		}
 	}
 }

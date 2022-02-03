@@ -27,6 +27,9 @@ namespace Service.TimeLoggerApi.Settings
         public int QueueSendBatchSize { get; set; }
 
         [YamlProperty("TimeLoggerApi.QueueCheckIntervalMilliseconds")]
-        public int QueueCheckIntervalMilliseconds { get; set; }
+        public int QueueCheckIntervalMilliseconds { get; set; } 
+
+        [YamlProperty("TimeLoggerApi.TokenExpireMinutes")]
+        public int TokenExpireMinutes { get; set; }
     }
 }

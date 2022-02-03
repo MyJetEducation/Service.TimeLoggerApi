@@ -17,21 +17,15 @@ namespace Service.TimeLoggerApi
 	{
 		private const string JwtSecretName = "JWT_SECRET";
 		private const string SettingsFileName = ".myjeteducation";
-		public const string EncodingKeyStr = "ENCODING_KEY";
+		private const string EncodingKeyStr = "ENCODING_KEY";
 
 		public static SettingsModel Settings { get; private set; }
-
 		public static ILoggerFactory LogFactory { get; private set; }
-
 		public static string JwtSecret { get; private set; }
-
 		public static string EncodingKey { get; set; }
 
-		public static Func<T> ReloadedSettings<T>(Func<SettingsModel, T> getter) => () =>
-		{
-			var settings = SettingsReader.GetSettings<SettingsModel>(SettingsFileName);
-			return getter.Invoke(settings);
-		};
+		public static Func<T> ReloadedSettings<T>(Func<SettingsModel, T> getter) => () => getter.Invoke(GetSettings());
+		public static SettingsModel GetSettings() => SettingsReader.GetSettings<SettingsModel>(SettingsFileName);
 
 		public static void Main(string[] args)
 		{
