@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 using Service.Core.Client.Constants;
@@ -12,6 +13,8 @@ using Service.UserInfo.Crud.Grpc;
 
 namespace Service.TimeLoggerApi.Controllers
 {
+	[Authorize]
+	[ApiController]
 	[OpenApiTag("TaskTime", Description = "Task time logger")]
 	[Route("/api/v1/task-time")]
 	public class TaskTimeController : BaseController
