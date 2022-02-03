@@ -13,7 +13,7 @@ using Service.UserInfo.Crud.Grpc;
 namespace Service.TimeLoggerApi.Controllers
 {
 	[OpenApiTag("TaskTime", Description = "Task time logger")]
-	[Route("/api/v1/task-time")]
+	[Route("/api/v1/time/task-time")]
 	public class TaskTimeController : BaseController
 	{
 		private readonly ISystemClock _systemClock;

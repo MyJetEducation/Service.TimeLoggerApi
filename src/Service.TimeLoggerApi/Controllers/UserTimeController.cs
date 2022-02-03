@@ -21,7 +21,7 @@ using Service.UserInfo.Crud.Grpc;
 namespace Service.TimeLoggerApi.Controllers
 {
 	[OpenApiTag("UserTime", Description = "User time logger")]
-	[Route("/api/v1/user-time")]
+	[Route("/api/v1/time/user-time")]
 	public class UserTimeController : BaseController
 	{
 		private readonly ITimeLoggerService _timeLoggerService;
