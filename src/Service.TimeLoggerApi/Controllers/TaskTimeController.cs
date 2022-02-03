@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 using Service.Core.Client.Constants;
+using Service.Core.Client.Education;
 using Service.Core.Client.Services;
 using Service.TimeLogger.Grpc.Models;
 using Service.TimeLoggerApi.Models;
@@ -29,6 +30,9 @@ namespace Service.TimeLoggerApi.Controllers
 		[SwaggerResponse(HttpStatusCode.OK, typeof (DataResponse<int>), Description = "Ok")]
 		public async ValueTask<IActionResult> GetTokenAsync(GetTaskTokenRequest request)
 		{
+			if (EducationHelper.GetTask(request.Tutorial, request.Unit, request.Task) == null)
+				return StatusResponse.Error(ResponseCode.NotValidEducationRequestData);
+
 			Guid? userId = await GetUserIdAsync();
 			if (userId == null)
 				return StatusResponse.Error(ResponseCode.UserNotFound);
