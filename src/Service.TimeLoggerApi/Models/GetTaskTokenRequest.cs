@@ -9,6 +9,7 @@ namespace Service.TimeLoggerApi.Models
 		[Required]
 		[Range(1, 9)]
 		[DefaultValue(EducationTutorial.PersonalFinance)]
+		[EnumDataType(typeof(EducationTutorial))]
 		public EducationTutorial Tutorial { get; set; }
 
 		[Required]
