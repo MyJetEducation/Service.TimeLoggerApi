@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Service.Core.Client.Education;
+using Service.Education.Structure;
 
 namespace Service.TimeLoggerApi.Models
 {
