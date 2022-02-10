@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="MyJetEducation.Service.Core.Client" Version="1.0.29" />
     <PackageReference Include="MyJetEducation.Service.TimeLogger.Client" Version="1.0.2" />
-    <PackageReference Include="MyJetWallet.Sdk.Service" Version="2.1.6" />
+    <PackageReference Include="MyJetWallet.Sdk.Service" Version="2.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.2" />
     <PackageReference Include="MyJetEducation.Service.UserInfo.Crud.Client" Version="1.0.14" />
     <PackageReference Include="NSwag.AspNetCore" Version="13.15.7" />
