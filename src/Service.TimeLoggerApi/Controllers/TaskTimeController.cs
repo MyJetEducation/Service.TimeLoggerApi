@@ -6,6 +6,7 @@ using NSwag.Annotations;
 using Service.Core.Client.Constants;
 using Service.Core.Client.Services;
 using Service.Education.Helpers;
+using Service.Grpc;
 using Service.TimeLogger.Grpc.Models;
 using Service.TimeLoggerApi.Models;
 using Service.UserInfo.Crud.Grpc;
@@ -19,7 +20,7 @@ namespace Service.TimeLoggerApi.Controllers
 		private readonly ISystemClock _systemClock;
 		private readonly IEncoderDecoder _encoderDecoder;
 
-		public TaskTimeController(IUserInfoService userInfoService, ISystemClock systemClock, IEncoderDecoder encoderDecoder) :
+		public TaskTimeController(IGrpcServiceProxy<IUserInfoService> userInfoService, ISystemClock systemClock, IEncoderDecoder encoderDecoder) :
 			base(userInfoService)
 		{
 			_systemClock = systemClock;

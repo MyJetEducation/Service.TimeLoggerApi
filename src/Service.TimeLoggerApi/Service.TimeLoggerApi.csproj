@@ -11,21 +11,18 @@
     <PackageReference Include="MyJetEducation.Service.TimeLogger.Client" Version="1.0.2" />
     <PackageReference Include="MyJetWallet.Sdk.Service" Version="2.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.2" />
-    <PackageReference Include="MyJetEducation.Service.UserInfo.Crud.Client" Version="1.0.14" />
+    <PackageReference Include="MyJetEducation.Service.UserInfo.Crud.Client" Version="1.0.15" />
     <PackageReference Include="NSwag.AspNetCore" Version="13.15.9" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.16.0" />
     <PackageReference Include="MyJetEducation.Service.Education" Version="1.0.1" />
     <PackageReference Include="SimpleTrading.Common" Version="1.0.32" />
+    <PackageReference Include="MyJetEducation.Service.Grpc" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="Dockerfile">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

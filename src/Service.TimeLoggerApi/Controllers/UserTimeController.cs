@@ -11,6 +11,7 @@ using MyJetWallet.Sdk.Service.Tools;
 using NSwag.Annotations;
 using Service.Core.Client.Constants;
 using Service.Core.Client.Services;
+using Service.Grpc;
 using Service.TimeLogger.Grpc;
 using Service.TimeLogger.Grpc.Models;
 using Service.TimeLoggerApi.Constants;
@@ -42,7 +43,7 @@ namespace Service.TimeLoggerApi.Controllers
 			TokenLifetimeDictionary = new ConcurrentDictionary<string, DateTime>();
 		}
 
-		public UserTimeController(IUserInfoService userInfoService,
+		public UserTimeController(IGrpcServiceProxy<IUserInfoService> userInfoService,
 			ITimeLoggerService timeLoggerService,
 			IEncoderDecoder encoderDecoder,
 			ISystemClock systemClock,
