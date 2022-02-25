@@ -17,9 +17,6 @@ namespace Service.TimeLoggerApi.Settings
         [YamlProperty("TimeLoggerApi.JwtAudience")]
         public string JwtAudience { get; set; }
 
-        [YamlProperty("TimeLoggerApi.UserInfoCrudServiceUrl")]
-        public string UserInfoCrudServiceUrl { get; set; }
-
         [YamlProperty("TimeLoggerApi.TimeLoggerServiceUrl")]
         public string TimeLoggerServiceUrl { get; set; }
 

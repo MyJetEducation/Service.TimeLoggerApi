@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Net;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 using Service.Core.Client.Constants;
 using Service.Core.Client.Services;
 using Service.Education.Helpers;
-using Service.Grpc;
 using Service.TimeLogger.Grpc.Models;
 using Service.TimeLoggerApi.Models;
-using Service.UserInfo.Crud.Grpc;
 
 namespace Service.TimeLoggerApi.Controllers
 {
@@ -20,8 +17,7 @@ namespace Service.TimeLoggerApi.Controllers
 		private readonly ISystemClock _systemClock;
 		private readonly IEncoderDecoder _encoderDecoder;
 
-		public TaskTimeController(IGrpcServiceProxy<IUserInfoService> userInfoService, ISystemClock systemClock, IEncoderDecoder encoderDecoder) :
-			base(userInfoService)
+		public TaskTimeController(ISystemClock systemClock, IEncoderDecoder encoderDecoder)
 		{
 			_systemClock = systemClock;
 			_encoderDecoder = encoderDecoder;
@@ -29,12 +25,12 @@ namespace Service.TimeLoggerApi.Controllers
 
 		[HttpPost("get")]
 		[SwaggerResponse(HttpStatusCode.OK, typeof (DataResponse<int>), Description = "Ok")]
-		public async ValueTask<IActionResult> GetTokenAsync(GetTaskTokenRequest request)
+		public IActionResult GetToken(GetTaskTokenRequest request)
 		{
 			if (EducationHelper.GetTask(request.Tutorial, request.Unit, request.Task) == null)
 				return StatusResponse.Error(ResponseCode.NotValidEducationRequestData);
 
-			Guid? userId = await GetUserIdAsync();
+			Guid? userId = GetUserId();
 			if (userId == null)
 				return StatusResponse.Error(ResponseCode.UserNotFound);
 

@@ -11,13 +11,11 @@ using MyJetWallet.Sdk.Service.Tools;
 using NSwag.Annotations;
 using Service.Core.Client.Constants;
 using Service.Core.Client.Services;
-using Service.Grpc;
 using Service.TimeLogger.Grpc;
 using Service.TimeLogger.Grpc.Models;
 using Service.TimeLoggerApi.Constants;
 using Service.TimeLoggerApi.Models;
 using Service.TimeLoggerApi.Settings;
-using Service.UserInfo.Crud.Grpc;
 
 namespace Service.TimeLoggerApi.Controllers
 {
@@ -43,11 +41,10 @@ namespace Service.TimeLoggerApi.Controllers
 			TokenLifetimeDictionary = new ConcurrentDictionary<string, DateTime>();
 		}
 
-		public UserTimeController(IGrpcServiceProxy<IUserInfoService> userInfoService,
-			ITimeLoggerService timeLoggerService,
+		public UserTimeController(ITimeLoggerService timeLoggerService,
 			IEncoderDecoder encoderDecoder,
 			ISystemClock systemClock,
-			ILogger<UserTimeController> logger) : base(userInfoService)
+			ILogger<UserTimeController> logger)
 		{
 			_timeLoggerService = timeLoggerService;
 			_encoderDecoder = encoderDecoder;
@@ -62,9 +59,9 @@ namespace Service.TimeLoggerApi.Controllers
 
 		[HttpPost("get")]
 		[SwaggerResponse(HttpStatusCode.OK, typeof (DataResponse<int>), Description = "Ok")]
-		public async ValueTask<IActionResult> GetTokenAsync()
+		public IActionResult GetTokenAsync()
 		{
-			Guid? userId = await GetUserIdAsync();
+			Guid? userId = GetUserId();
 			if (userId == null)
 				return StatusResponse.Error(ResponseCode.UserNotFound);
 
