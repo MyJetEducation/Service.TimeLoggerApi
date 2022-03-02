@@ -14,9 +14,6 @@ namespace Service.TimeLoggerApi.Settings
         [YamlProperty("TimeLoggerApi.ElkLogs")]
         public LogElkSettings ElkLogs { get; set; }
 
-        [YamlProperty("TimeLoggerApi.JwtAudience")]
-        public string JwtAudience { get; set; }
-
         [YamlProperty("TimeLoggerApi.TimeLoggerServiceUrl")]
         public string TimeLoggerServiceUrl { get; set; }
 

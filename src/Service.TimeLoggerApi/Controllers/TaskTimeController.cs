@@ -2,11 +2,11 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
-using Service.Core.Client.Constants;
 using Service.Core.Client.Services;
 using Service.Education.Helpers;
 using Service.TimeLogger.Grpc.Models;
 using Service.TimeLoggerApi.Models;
+using Service.Web;
 
 namespace Service.TimeLoggerApi.Controllers
 {

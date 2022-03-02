@@ -9,13 +9,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MyJetWallet.Sdk.Service.Tools;
 using NSwag.Annotations;
-using Service.Core.Client.Constants;
 using Service.Core.Client.Services;
 using Service.TimeLogger.Grpc;
 using Service.TimeLogger.Grpc.Models;
 using Service.TimeLoggerApi.Constants;
-using Service.TimeLoggerApi.Models;
 using Service.TimeLoggerApi.Settings;
+using Service.Web;
 
 namespace Service.TimeLoggerApi.Controllers
 {
@@ -139,7 +138,7 @@ namespace Service.TimeLoggerApi.Controllers
 
 		private void ReadSettings()
 		{
-			SettingsModel settings = Program.GetSettings();
+			SettingsModel settings = Program.LoadSettings();
 			_interval = TimeSpan.FromMilliseconds(settings.QueueCheckIntervalMilliseconds);
 			_batchSize = settings.QueueSendBatchSize;
 			_tokenExpire = settings.TokenExpireMinutes;
