@@ -81,7 +81,7 @@ namespace Service.TimeLoggerApi.Controllers
 		[SwaggerResponse(HttpStatusCode.OK, typeof (DataResponse<int>), Description = "Ok")]
 		public IActionResult LogTime([FromBody, Required] string token)
 		{
-			var request = _encoderDecoder.DecodeProto<TimeLogGrpcRequest>(token);
+			TimeLogGrpcRequest request = DecodeTimeToken(token);
 			if (request == null)
 				return StatusResponse.Error(TimeLoggerResponseCode.InvalidTimeToken);
 
@@ -97,6 +97,20 @@ namespace Service.TimeLoggerApi.Controllers
 			RequestQueue.Add(request);
 
 			return StatusResponse.Ok();
+		}
+
+		private TimeLogGrpcRequest DecodeTimeToken(string token)
+		{
+			try
+			{
+				return _encoderDecoder.DecodeProto<TimeLogGrpcRequest>(token);
+			}
+			catch (Exception exception)
+			{
+				_logger.LogError("Can't decode user time token ({token}), with message {message}", token, exception.Message);
+			}
+
+			return null;
 		}
 
 		private Task ProcessQueue()
