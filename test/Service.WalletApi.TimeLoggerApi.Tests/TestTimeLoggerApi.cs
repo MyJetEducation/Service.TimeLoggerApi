@@ -1,9 +1,9 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace Service.TimeLoggerApi.Tests
+namespace Service.WalletApi.TimeLoggerApi.Tests
 {
-    public class TestExample
+    public class TestTimeLoggerApi
     {
         [SetUp]
         public void Setup()

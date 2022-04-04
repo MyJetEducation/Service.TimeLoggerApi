@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Service.Education.Structure;
 
-namespace Service.TimeLoggerApi.Models
+namespace Service.WalletApi.TimeLoggerApi.Controllers.Contracts
 {
 	public class UseRetryRequest
 	{

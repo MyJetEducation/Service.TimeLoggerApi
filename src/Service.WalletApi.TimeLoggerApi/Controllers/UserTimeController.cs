@@ -12,11 +12,11 @@ using NSwag.Annotations;
 using Service.Core.Client.Services;
 using Service.TimeLogger.Grpc;
 using Service.TimeLogger.Grpc.Models;
-using Service.TimeLoggerApi.Constants;
-using Service.TimeLoggerApi.Settings;
+using Service.WalletApi.TimeLoggerApi.Controllers.Constants;
+using Service.WalletApi.TimeLoggerApi.Settings;
 using Service.Web;
 
-namespace Service.TimeLoggerApi.Controllers
+namespace Service.WalletApi.TimeLoggerApi.Controllers
 {
 	[OpenApiTag("UserTime", Description = "User time logger")]
 	[Route("/api/v1/time/user-time")]
@@ -152,7 +152,7 @@ namespace Service.TimeLoggerApi.Controllers
 
 		private void ReadSettings()
 		{
-			SettingsModel settings = Program.LoadSettings();
+			SettingsModel settings = Program.Settings;
 			_interval = TimeSpan.FromMilliseconds(settings.QueueCheckIntervalMilliseconds);
 			_batchSize = settings.QueueSendBatchSize;
 			_tokenExpire = settings.TokenExpireMinutes;

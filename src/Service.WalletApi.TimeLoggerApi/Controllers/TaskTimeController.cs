@@ -5,10 +5,10 @@ using NSwag.Annotations;
 using Service.Core.Client.Services;
 using Service.Education.Helpers;
 using Service.TimeLogger.Grpc.Models;
-using Service.TimeLoggerApi.Models;
+using Service.WalletApi.TimeLoggerApi.Controllers.Contracts;
 using Service.Web;
 
-namespace Service.TimeLoggerApi.Controllers
+namespace Service.WalletApi.TimeLoggerApi.Controllers
 {
 	[OpenApiTag("TaskTime", Description = "Task time logger")]
 	[Route("/api/v1/time/task-time")]
