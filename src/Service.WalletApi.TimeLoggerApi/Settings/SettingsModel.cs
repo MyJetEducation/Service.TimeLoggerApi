@@ -5,40 +5,40 @@ namespace Service.WalletApi.TimeLoggerApi.Settings
 {
 	public class SettingsModel
 	{
-		[YamlProperty("TimeLoggerApi.SeqServiceUrl")]
+		[YamlProperty("WalletApiEducation.SeqServiceUrl")]
 		public string SeqServiceUrl { get; set; }
 
-		[YamlProperty("TimeLoggerApi.ZipkinUrl")]
+		[YamlProperty("WalletApiEducation.ZipkinUrl")]
 		public string ZipkinUrl { get; set; }
 
-		[YamlProperty("TimeLoggerApi.ElkLogs")]
+		[YamlProperty("WalletApiEducation.ElkLogs")]
 		public LogElkSettings ElkLogs { get; set; }
 
-		[YamlProperty("TimeLoggerApi.EnableApiTrace")]
+		[YamlProperty("WalletApiEducation.EnableApiTrace")]
 		public bool EnableApiTrace { get; set; }
 
-		[YamlProperty("TimeLoggerApi.MyNoSqlReaderHostPort")]
+		[YamlProperty("WalletApiEducation.MyNoSqlReaderHostPort")]
 		public string MyNoSqlReaderHostPort { get; set; }
 
-		[YamlProperty("TimeLoggerApi.AuthMyNoSqlReaderHostPort")]
+		[YamlProperty("WalletApiEducation.AuthMyNoSqlReaderHostPort")]
 		public string AuthMyNoSqlReaderHostPort { get; set; }
 
-		[YamlProperty("TimeLoggerApi.SessionEncryptionKeyId")]
+		[YamlProperty("WalletApiEducation.SessionEncryptionKeyId")]
 		public string SessionEncryptionKeyId { get; set; }
 
-		[YamlProperty("TimeLoggerApi.MyNoSqlWriterUrl")]
+		[YamlProperty("WalletApiEducation.MyNoSqlWriterUrl")]
 		public string MyNoSqlWriterUrl { get; set; }
 
-		[YamlProperty("TimeLoggerApi.TimeLoggerServiceUrl")]
+		[YamlProperty("WalletApiEducation.TimeLoggerServiceUrl")]
 		public string TimeLoggerServiceUrl { get; set; }
 
-		[YamlProperty("TimeLoggerApi.QueueSendBatchSize")]
-		public int QueueSendBatchSize { get; set; }
+		[YamlProperty("WalletApiEducation.TimeLoggerQueueSendBatchSize")]
+		public int TimeLoggerQueueSendBatchSize { get; set; }
 
-		[YamlProperty("TimeLoggerApi.QueueCheckIntervalMilliseconds")]
-		public int QueueCheckIntervalMilliseconds { get; set; }
+		[YamlProperty("WalletApiEducation.TimeLoggerQueueCheckIntervalMilliseconds")]
+		public int TimeLoggerQueueCheckIntervalMilliseconds { get; set; }
 
-		[YamlProperty("TimeLoggerApi.TokenExpireMinutes")]
-		public int TokenExpireMinutes { get; set; }
+		[YamlProperty("WalletApiEducation.TimeLoggerTokenExpireMinutes")]
+		public int TimeLoggerTokenExpireMinutes { get; set; }
 	}
 }
