@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using MyJetWallet.ApiSecurityManager.Autofac;
 using MyJetWallet.Sdk.RestApiTrace;
-using MyJetWallet.Sdk.Service;
 using Service.Core.Client.Services;
 using Service.TimeLogger.Client;
 
@@ -11,8 +10,7 @@ namespace Service.WalletApi.TimeLoggerApi.Modules
 	{
 		protected override void Load(ContainerBuilder builder)
 		{
-			// second parameter is null because we do not store api keys yet for wallet api
-			builder.RegisterEncryptionServiceClient(ApplicationEnvironment.AppName, () => Program.Settings.MyNoSqlWriterUrl);
+			builder.RegisterEncryptionServiceClient();
 
 			builder.RegisterTimeLoggerClient(Program.Settings.TimeLoggerServiceUrl);
 			builder.RegisterType<SystemClock>().AsImplementedInterfaces().SingleInstance();
