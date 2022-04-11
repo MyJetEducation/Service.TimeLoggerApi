@@ -1,6 +1,6 @@
 ﻿using Autofac;
 
-namespace Service.TimeLoggerApi.Modules
+namespace Service.WalletApi.TimeLoggerApi.Modules
 {
     public class SettingsModule : Module
     {

@@ -1,16 +1,21 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace TestApp
 {
-	public class Program
-	{
-		private static void Main()
-		{
-			Console.Write("Press enter to start");
-			Console.ReadLine();
+    class Program
+    {
+        static async Task Main(string[] args)
+        {
+            Console.WriteLine("Press enter to start.");
+            Console.ReadLine();
+            
 
-			Console.WriteLine("End");
-			Console.ReadLine();
-		}
-	}
+
+            Console.WriteLine("Press enter to exit");
+            Console.ReadLine();
+
+            Console.WriteLine("End of app");
+        }
+    }
 }

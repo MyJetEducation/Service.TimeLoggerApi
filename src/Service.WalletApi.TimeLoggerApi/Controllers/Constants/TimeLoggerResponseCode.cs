@@ -1,4 +1,4 @@
-﻿namespace Service.TimeLoggerApi.Constants
+﻿namespace Service.WalletApi.TimeLoggerApi.Controllers.Constants
 {
 	public class TimeLoggerResponseCode
 	{

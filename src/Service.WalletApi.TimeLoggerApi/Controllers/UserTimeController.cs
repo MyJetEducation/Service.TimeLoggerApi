@@ -5,22 +5,30 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MyJetWallet.Sdk.Authorization.Http;
 using MyJetWallet.Sdk.Service.Tools;
 using NSwag.Annotations;
 using Service.Core.Client.Services;
 using Service.TimeLogger.Grpc;
 using Service.TimeLogger.Grpc.Models;
-using Service.TimeLoggerApi.Constants;
-using Service.TimeLoggerApi.Settings;
+using Service.WalletApi.TimeLoggerApi.Controllers.Constants;
+using Service.WalletApi.TimeLoggerApi.Settings;
 using Service.Web;
 
-namespace Service.TimeLoggerApi.Controllers
+namespace Service.WalletApi.TimeLoggerApi.Controllers
 {
+	[Authorize]
+	[ApiController]
+	[ProducesResponseType(StatusCodes.Status200OK)]
+	[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+	[SwaggerResponse(HttpStatusCode.Unauthorized, null, Description = "Unauthorized")]
 	[OpenApiTag("UserTime", Description = "User time logger")]
 	[Route("/api/v1/time/user-time")]
-	public class UserTimeController : BaseController
+	public class UserTimeController : ControllerBase
 	{
 		private readonly ITimeLoggerService _timeLoggerService;
 		private readonly ILogger<UserTimeController> _logger;
@@ -60,7 +68,7 @@ namespace Service.TimeLoggerApi.Controllers
 		[SwaggerResponse(HttpStatusCode.OK, typeof (DataResponse<int>), Description = "Ok")]
 		public IActionResult GetTokenAsync()
 		{
-			Guid? userId = GetUserId();
+			string userId = this.GetClientId();
 			if (userId == null)
 				return StatusResponse.Error(ResponseCode.UserNotFound);
 
@@ -68,7 +76,7 @@ namespace Service.TimeLoggerApi.Controllers
 
 			string token = _encoderDecoder.EncodeProto(new TimeLogGrpcRequest
 			{
-				UserId = userId.Value,
+				UserId = userId,
 				StartDate = now
 			});
 
@@ -152,10 +160,10 @@ namespace Service.TimeLoggerApi.Controllers
 
 		private void ReadSettings()
 		{
-			SettingsModel settings = Program.LoadSettings();
-			_interval = TimeSpan.FromMilliseconds(settings.QueueCheckIntervalMilliseconds);
-			_batchSize = settings.QueueSendBatchSize;
-			_tokenExpire = settings.TokenExpireMinutes;
+			SettingsModel settings = Program.Settings;
+			_interval = TimeSpan.FromMilliseconds(settings.TimeLoggerQueueCheckIntervalMilliseconds);
+			_batchSize = settings.TimeLoggerQueueSendBatchSize;
+			_tokenExpire = settings.TimeLoggerTokenExpireMinutes;
 		}
 	}
 }
