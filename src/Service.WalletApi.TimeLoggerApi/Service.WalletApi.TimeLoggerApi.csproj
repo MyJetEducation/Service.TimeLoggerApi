@@ -40,6 +40,7 @@
     <PackageReference Include="MyJetEducation.Service.Core.Client" Version="1.0.35" />
     <PackageReference Include="MyJetEducation.Service.TimeLogger.Client" Version="1.0.6" />
     <PackageReference Include="MyJetEducation.Service.Education" Version="1.0.2" />
+    <PackageReference Include="SimpleTrading.Common" Version="1.0.32" />
   </ItemGroup>
 
   <ItemGroup>
